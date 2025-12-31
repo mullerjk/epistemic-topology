@@ -337,27 +337,27 @@ const EpistemicTopologySimulation = () => {
           <h3 className="text-white font-semibold text-base mb-2">{t('simulation.howToInterpret')}</h3>
           
           <div>
-            <strong className="text-blue-400">Cores:</strong> {t('simulation.colorsDesc')}
+            <strong className="text-blue-400">{t('simulation.colors')}:</strong> {t('simulation.colorsDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Difusão (D):</strong> {t('simulation.diffusionDesc')}
+            <strong className="text-blue-400">{t('simulation.diffusion')}:</strong> {t('simulation.diffusionDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Criação (σ):</strong> {t('simulation.creationDesc')}
+            <strong className="text-blue-400">{t('simulation.creation')}:</strong> {t('simulation.creationDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Dissipação (μ):</strong> {t('simulation.dissipationDesc')}
+            <strong className="text-blue-400">{t('simulation.dissipation')}:</strong> {t('simulation.dissipationDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Φ (Total):</strong> {t('simulation.totalDesc')}
+            <strong className="text-blue-400">{t('simulation.totalLabel')}</strong> {t('simulation.totalDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Entropia:</strong> {t('simulation.entropyDesc')}
+            <strong className="text-blue-400">{t('simulation.entropyLabel')}:</strong> {t('simulation.entropyDesc')}
           </div>
           
           <div className="pt-2 border-t border-slate-700">
