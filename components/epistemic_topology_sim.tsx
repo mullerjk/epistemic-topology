@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, RotateCcw, Info } from 'lucide-react';
+import { useTranslation } from 'next-i18next';
 
 const EpistemicTopologySimulation = () => {
+  const { t } = useTranslation('common');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [time, setTime] = useState(0);
@@ -198,10 +200,10 @@ const EpistemicTopologySimulation = () => {
     <div className="w-full max-w-4xl mx-auto p-6 bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg shadow-2xl">
       <div className="mb-6">
         <h2 className="text-3xl font-bold text-white mb-2">
-          Simulação da Topologia do Conhecimento
+          {t('simulation.title')}
         </h2>
         <p className="text-slate-300 text-sm">
-          Equação Mestra: ∂ρ/∂t = D·∇²ρ + σ(x,t) - μ·ρ
+          {t('simulation.equation')}
         </p>
       </div>
       
@@ -217,28 +219,28 @@ const EpistemicTopologySimulation = () => {
       
       {/* Legenda do mapa de calor */}
       <div className="mb-6 bg-slate-800 rounded p-3">
-        <div className="text-white text-sm mb-2 font-semibold">Densidade Epistêmica ρ(x,y,t):</div>
+        <div className="text-white text-sm mb-2 font-semibold">{t('simulation.epistemicDensity')}</div>
         <div className="flex items-center gap-2">
-          <span className="text-slate-400 text-xs">Baixa</span>
+          <span className="text-slate-400 text-xs">{t('simulation.low')}</span>
           <div className="flex-1 h-6 rounded" style={{
             background: 'linear-gradient(to right, rgb(0,0,255), rgb(0,255,255), rgb(0,255,0), rgb(255,255,0), rgb(255,0,0))'
           }}></div>
-          <span className="text-slate-400 text-xs">Alta</span>
+          <span className="text-slate-400 text-xs">{t('simulation.high')}</span>
         </div>
       </div>
       
       {/* Estatísticas */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="bg-slate-700 rounded p-4">
-          <div className="text-slate-400 text-xs mb-1">Conhecimento Total (Φ)</div>
+          <div className="text-slate-400 text-xs mb-1">{t('simulation.totalKnowledge')}</div>
           <div className="text-white text-2xl font-bold">{stats.total}</div>
         </div>
         <div className="bg-slate-700 rounded p-4">
-          <div className="text-slate-400 text-xs mb-1">Densidade Máxima</div>
+          <div className="text-slate-400 text-xs mb-1">{t('simulation.maxDensity')}</div>
           <div className="text-white text-2xl font-bold">{stats.max}</div>
         </div>
         <div className="bg-slate-700 rounded p-4">
-          <div className="text-slate-400 text-xs mb-1">Entropia (bits)</div>
+          <div className="text-slate-400 text-xs mb-1">{t('simulation.entropy')}</div>
           <div className="text-white text-2xl font-bold">{stats.entropy}</div>
         </div>
       </div>
@@ -250,7 +252,7 @@ const EpistemicTopologySimulation = () => {
           className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition"
         >
           {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-          {isPlaying ? 'Pausar' : 'Iniciar'}
+          {isPlaying ? t('simulation.pause') : t('simulation.start')}
         </button>
         
         <button
@@ -258,7 +260,7 @@ const EpistemicTopologySimulation = () => {
           className="flex items-center gap-2 px-6 py-3 bg-slate-600 hover:bg-slate-700 text-white rounded-lg font-semibold transition"
         >
           <RotateCcw size={20} />
-          Reiniciar
+          {t('simulation.restart')}
         </button>
         
         <button
@@ -266,23 +268,23 @@ const EpistemicTopologySimulation = () => {
           className="flex items-center gap-2 px-6 py-3 bg-slate-600 hover:bg-slate-700 text-white rounded-lg font-semibold transition ml-auto"
         >
           <Info size={20} />
-          {showInfo ? 'Ocultar' : 'Info'}
+          {showInfo ? t('simulation.hide') : t('simulation.info')}
         </button>
       </div>
       
       <div className="text-slate-400 text-sm mb-6">
-        Tempo: {time.toFixed(1)} unidades
+        {t('simulation.time')} {time.toFixed(1)} {t('simulation.units')}
       </div>
       
       {/* Parâmetros */}
       <div className="bg-slate-800 rounded-lg p-4 mb-6">
-        <h3 className="text-white font-semibold mb-4">Parâmetros da Equação</h3>
+        <h3 className="text-white font-semibold mb-4">{t('simulation.paramsTitle')}</h3>
         
         <div className="space-y-4">
           <div>
             <label className="text-slate-300 text-sm flex justify-between mb-1">
-              <span>Difusão (D): {params.diffusion.toFixed(2)}</span>
-              <span className="text-slate-500">Compartilhamento</span>
+              <span>{t('simulation.diffusion')} {params.diffusion.toFixed(2)}</span>
+              <span className="text-slate-500">{t('simulation.sharing')}</span>
             </label>
             <input
               type="range"
@@ -297,8 +299,8 @@ const EpistemicTopologySimulation = () => {
           
           <div>
             <label className="text-slate-300 text-sm flex justify-between mb-1">
-              <span>Criação (σ): {params.creation.toFixed(3)}</span>
-              <span className="text-slate-500">Inovação</span>
+              <span>{t('simulation.creation')} {params.creation.toFixed(3)}</span>
+              <span className="text-slate-500">{t('simulation.innovation')}</span>
             </label>
             <input
               type="range"
@@ -313,8 +315,8 @@ const EpistemicTopologySimulation = () => {
           
           <div>
             <label className="text-slate-300 text-sm flex justify-between mb-1">
-              <span>Dissipação (μ): {params.dissipation.toFixed(3)}</span>
-              <span className="text-slate-500">Esquecimento</span>
+              <span>{t('simulation.dissipation')} {params.dissipation.toFixed(3)}</span>
+              <span className="text-slate-500">{t('simulation.forgetting')}</span>
             </label>
             <input
               type="range"
@@ -332,39 +334,39 @@ const EpistemicTopologySimulation = () => {
       {/* Informações */}
       {showInfo && (
         <div className="bg-slate-800 rounded-lg p-4 text-slate-300 text-sm space-y-3">
-          <h3 className="text-white font-semibold text-base mb-2">Como Interpretar</h3>
+          <h3 className="text-white font-semibold text-base mb-2">{t('simulation.howToInterpret')}</h3>
           
           <div>
-            <strong className="text-blue-400">Cores:</strong> Representam densidade de conhecimento em cada região do espaço-tempo.
+            <strong className="text-blue-400">Cores:</strong> {t('simulation.colorsDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Difusão (D):</strong> Velocidade com que conhecimento se espalha espacialmente (compartilhamento, comunicação, ensino).
+            <strong className="text-blue-400">Difusão (D):</strong> {t('simulation.diffusionDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Criação (σ):</strong> Taxa de surgimento de conhecimento novo (pesquisa, inovação, descoberta).
+            <strong className="text-blue-400">Criação (σ):</strong> {t('simulation.creationDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Dissipação (μ):</strong> Taxa de perda de conhecimento (esquecimento, morte, degradação de registros).
+            <strong className="text-blue-400">Dissipação (μ):</strong> {t('simulation.dissipationDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Φ (Total):</strong> Integral de toda densidade epistêmica - "quantidade total de conhecimento" no sistema.
+            <strong className="text-blue-400">Φ (Total):</strong> {t('simulation.totalDesc')}
           </div>
           
           <div>
-            <strong className="text-blue-400">Entropia:</strong> Medida de dispersão/uniformidade. Alta entropia = conhecimento distribuído uniformemente. Baixa = concentrado em poucos pontos.
+            <strong className="text-blue-400">Entropia:</strong> {t('simulation.entropyDesc')}
           </div>
           
           <div className="pt-2 border-t border-slate-700">
-            <strong className="text-yellow-400">Experimentos:</strong>
+            <strong className="text-yellow-400">{t('simulation.experiments')}</strong>
             <ul className="list-disc list-inside mt-1 space-y-1">
-              <li>Aumente D para ver "globalização do conhecimento"</li>
-              <li>Aumente σ para simular "revolução científica"</li>
-              <li>Aumente μ para simular "era das trevas"</li>
-              <li>Balance todos para ver equilíbrio dinâmico</li>
+              <li>{t('simulation.exp1')}</li>
+              <li>{t('simulation.exp2')}</li>
+              <li>{t('simulation.exp3')}</li>
+              <li>{t('simulation.exp4')}</li>
             </ul>
           </div>
         </div>

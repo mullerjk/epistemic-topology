@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
-// useRouter removed: language buttons were removed from the hero
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import EpistemicTopologySimulation from '../components/epistemic_topology_sim';
 import EpistemicDataAnalysis from '../components/epistemic_data_analysis';
+import LanguageSwitcher from '../components/language_switcher';
 
 export const getStaticProps = async ({ locale }: { locale?: string }) => ({
   props: {
@@ -14,7 +14,23 @@ export const getStaticProps = async ({ locale }: { locale?: string }) => ({
 
 export default function Home() {
   const { t } = useTranslation('common');
-  // language switch handled via server-side routing; buttons removed
+  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
+
+  // Fechar dropdown ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.language-switcher')) {
+        setLanguageDropdownOpen(false);
+      }
+    };
+
+    if (languageDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [languageDropdownOpen]);
 
   useEffect(() => {
     // Canvas de partículas animadas
@@ -117,9 +133,11 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="hero">
+        <div className="language-selector">
+          <LanguageSwitcher />
+        </div>
         <canvas id="particles"></canvas>
         <div className="hero-content">
-          {/* translation buttons removed */}
           <h1>{t('hero.title')}</h1>
           <div className="subtitle">{t('hero.subtitle')}</div>
           <p className="quote">{t('hero.quote')}</p>

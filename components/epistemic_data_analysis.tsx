@@ -1,34 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Database, Brain, AlertCircle } from 'lucide-react';
+import { useTranslation } from 'next-i18next';
 
 const EpistemicDataAnalysis = () => {
+  const { t } = useTranslation('common');
   const [activeTab, setActiveTab] = useState('diffusion');
   const [selectedCase, setSelectedCase] = useState('covid19');
+  
+  // Listas traduzidas
+  const modelWorksList = [
+    "Sudden viral events (COVID-19, memes)",
+    "Gradual technology adoption (Deep Learning)",
+    "Peak interest prediction",
+    "Comparison between different ideas"
+  ];
+  
+  const limitationsList = [
+    "Doesn't capture external events (policies, censorship)",
+    "Difficulty with cycles (Bitcoin hype cycles)",
+    "Requires calibration by knowledge type",
+    "Simplifies geographical heterogeneity"
+  ];
   
   // Casos de estudo baseados em dados reais conhecidos
   const caseStudies = {
     covid19: {
-      name: 'COVID-19 (2020)',
-      description: 'Propagação de conhecimento sobre a pandemia',
+      name: t('analysis.covid19.name'),
+      description: t('analysis.covid19.description'),
       realData: generateCovidData(),
       params: { D: 0.85, sigma: 0.06, mu: 0.015 }
     },
     deeplearning: {
-      name: 'Deep Learning (2012-2024)',
-      description: 'Adoção de técnicas de aprendizado profundo',
+      name: t('analysis.deeplearning.name'),
+      description: t('analysis.deeplearning.description'),
       realData: generateDeepLearningData(),
       params: { D: 0.45, sigma: 0.04, mu: 0.008 }
     },
     bitcoin: {
-      name: 'Bitcoin (2009-2024)',
-      description: 'Conhecimento sobre criptomoedas',
+      name: t('analysis.bitcoin.name'),
+      description: t('analysis.bitcoin.description'),
       realData: generateBitcoinData(),
       params: { D: 0.55, sigma: 0.05, mu: 0.012 }
     },
     climatechange: {
-      name: 'Mudança Climática (1990-2024)',
-      description: 'Consciência sobre aquecimento global',
+      name: t('analysis.climatechange.name'),
+      description: t('analysis.climatechange.description'),
       realData: generateClimateData(),
       params: { D: 0.35, sigma: 0.025, mu: 0.006 }
     }
@@ -220,10 +237,10 @@ const EpistemicDataAnalysis = () => {
     <div className="w-full max-w-6xl mx-auto p-6 bg-gradient-to-br from-slate-900 to-slate-800 rounded-lg shadow-2xl">
       <div className="mb-6">
         <h2 className="text-3xl font-bold text-white mb-2">
-          Análise Empírica: Difusão de Conhecimento
+          {t('analysis.title')}
         </h2>
         <p className="text-slate-300">
-          Validação do modelo com dados reais de propagação de ideias
+          {t('analysis.subtitle')}
         </p>
       </div>
       
@@ -248,27 +265,27 @@ const EpistemicDataAnalysis = () => {
       {/* Métricas Principais */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg p-4 text-white">
-          <div className="text-xs opacity-80 mb-1">Correlação</div>
+          <div className="text-xs opacity-80 mb-1">{t('analysis.correlation')}</div>
           <div className="text-3xl font-bold">{metrics.correlation}%</div>
-          <div className="text-xs mt-1">Pearson r</div>
+          <div className="text-xs mt-1">{t('analysis.pearson')}</div>
         </div>
         
         <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-lg p-4 text-white">
-          <div className="text-xs opacity-80 mb-1">Acurácia</div>
+          <div className="text-xs opacity-80 mb-1">{t('analysis.accuracy')}</div>
           <div className="text-3xl font-bold">{metrics.predictiveAccuracy}%</div>
-          <div className="text-xs mt-1">Erro &lt; 15%</div>
+          <div className="text-xs mt-1">{t('analysis.errorLess')}</div>
         </div>
         
         <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg p-4 text-white">
-          <div className="text-xs opacity-80 mb-1">RMSE</div>
+          <div className="text-xs opacity-80 mb-1">{t('analysis.rmse')}</div>
           <div className="text-3xl font-bold">{metrics.rmse}</div>
-          <div className="text-xs mt-1">Erro quadrático</div>
+          <div className="text-xs mt-1">{t('analysis.quadraticError')}</div>
         </div>
         
         <div className="bg-gradient-to-br from-orange-600 to-orange-700 rounded-lg p-4 text-white">
-          <div className="text-xs opacity-80 mb-1">Taxa Difusão</div>
+          <div className="text-xs opacity-80 mb-1">{t('analysis.diffusionRate')}</div>
           <div className="text-3xl font-bold">{metrics.diffusionRate}</div>
-          <div className="text-xs mt-1">Unidades/período</div>
+          <div className="text-xs mt-1">{t('analysis.unitsPerPeriod')}</div>
         </div>
       </div>
       
@@ -282,7 +299,7 @@ const EpistemicDataAnalysis = () => {
               : 'bg-slate-700 text-slate-300'
           }`}
         >
-          Curva de Difusão
+            {t('analysis.tabDiffusion')}
         </button>
         <button
           onClick={() => setActiveTab('sources')}
@@ -292,7 +309,7 @@ const EpistemicDataAnalysis = () => {
               : 'bg-slate-700 text-slate-300'
           }`}
         >
-          Fontes de Dados
+            {t('analysis.tabSources')}
         </button>
         <button
           onClick={() => setActiveTab('sensitivity')}
@@ -302,7 +319,7 @@ const EpistemicDataAnalysis = () => {
               : 'bg-slate-700 text-slate-300'
           }`}
         >
-          Sensibilidade
+            {t('analysis.tabSensitivity')}
         </button>
       </div>
       
@@ -311,7 +328,7 @@ const EpistemicDataAnalysis = () => {
         <div className="bg-slate-800 rounded-lg p-6">
           <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
             <TrendingUp size={20} />
-            Observado vs. Predito pelo Modelo
+            {t('analysis.obsVsPred')}
           </h3>
           
           <ResponsiveContainer width="100%" height={400}>
@@ -329,7 +346,7 @@ const EpistemicDataAnalysis = () => {
                 dataKey="observed" 
                 stroke="#3B82F6" 
                 strokeWidth={3}
-                name="Dados Reais"
+                name={t('analysis.realData')}
                 dot={{ fill: '#3B82F6', r: 5 }}
               />
               <Line 
@@ -338,30 +355,28 @@ const EpistemicDataAnalysis = () => {
                 stroke="#10B981" 
                 strokeWidth={3}
                 strokeDasharray="5 5"
-                name="Modelo Previsto"
+                name={t('analysis.modelPredicted')}
                 dot={{ fill: '#10B981', r: 5 }}
               />
             </LineChart>
           </ResponsiveContainer>
           
           <div className="mt-6 bg-slate-700 rounded-lg p-4">
-            <h4 className="text-white font-semibold mb-2">Interpretação</h4>
+            <h4 className="text-white font-semibold mb-2">{t('analysis.interpretation')}</h4>
             <div className="text-slate-300 text-sm space-y-2">
               <p>
-                <strong className="text-blue-400">Linha Azul (Dados Reais):</strong> Baseada em métricas observáveis 
-                (Google Trends, publicações científicas, menções em mídia).
+                <strong className="text-blue-400">{t('analysis.blueLine')}</strong> {t('analysis.blueLineDesc')}
               </p>
               <p>
-                <strong className="text-green-400">Linha Verde (Modelo):</strong> Predição usando nossa equação 
-                ∂ρ/∂t = D·∇²ρ + σ - μ·ρ com parâmetros calibrados.
+                <strong className="text-green-400">{t('analysis.greenLine')}</strong> {t('analysis.greenLineDesc')}
               </p>
               <p>
-                <strong className="text-yellow-400">Correlação {metrics.correlation}%:</strong> {
+                <strong className="text-yellow-400">{t('analysis.correlation')} {metrics.correlation}%:</strong> {
                   parseFloat(metrics.correlation) > 80 
-                    ? 'Excelente ajuste - modelo captura dinâmica real' 
+                    ? t('analysis.correlationExcellent') 
                     : parseFloat(metrics.correlation) > 60
-                    ? 'Bom ajuste - tendências principais capturadas'
-                    : 'Ajuste moderado - requer refinamento'
+                    ? t('analysis.correlationGood')
+                    : t('analysis.correlationModerate')
                 }
               </p>
             </div>
@@ -373,7 +388,7 @@ const EpistemicDataAnalysis = () => {
         <div className="bg-slate-800 rounded-lg p-6">
           <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
             <Database size={20} />
-            Múltiplas Fontes de Evidência
+            {t('analysis.multipleSources')}
           </h3>
           
           <ResponsiveContainer width="100%" height={350}>
@@ -392,7 +407,7 @@ const EpistemicDataAnalysis = () => {
                 stroke="#3B82F6" 
                 fill="#3B82F6"
                 fillOpacity={0.6}
-                name="Buscas (Google Trends)"
+                name={t('analysis.searches')}
               />
               <Area 
                 type="monotone" 
@@ -401,7 +416,7 @@ const EpistemicDataAnalysis = () => {
                 stroke="#8B5CF6" 
                 fill="#8B5CF6"
                 fillOpacity={0.6}
-                name="Papers Publicados"
+                name={t('analysis.papers')}
               />
               <Area 
                 type="monotone" 
@@ -410,7 +425,7 @@ const EpistemicDataAnalysis = () => {
                 stroke="#10B981" 
                 fill="#10B981"
                 fillOpacity={0.6}
-                name="Menções em Mídia"
+                name={t('analysis.mentions')}
               />
             </AreaChart>
           </ResponsiveContainer>
@@ -422,7 +437,7 @@ const EpistemicDataAnalysis = () => {
                 <span className="text-white font-semibold text-sm">Google Trends</span>
               </div>
               <p className="text-slate-300 text-xs">
-                Volume de buscas reflete interesse público direto. Proxy para ρ(popularidade).
+                {t('analysis.googleTrendsDesc')}
               </p>
             </div>
             
@@ -432,7 +447,7 @@ const EpistemicDataAnalysis = () => {
                 <span className="text-white font-semibold text-sm">Papers Científicos</span>
               </div>
               <p className="text-slate-300 text-xs">
-                Publicações acadêmicas indicam profundidade epistêmica. Proxy para σ(criação).
+                {t('analysis.papersDesc')}
               </p>
             </div>
             
@@ -442,7 +457,7 @@ const EpistemicDataAnalysis = () => {
                 <span className="text-white font-semibold text-sm">Menções em Mídia</span>
               </div>
               <p className="text-slate-300 text-xs">
-                Cobertura midiática amplifica difusão. Proxy para D(disseminação).
+                {t('analysis.mediaDesc')}
               </p>
             </div>
           </div>
@@ -453,7 +468,7 @@ const EpistemicDataAnalysis = () => {
         <div className="bg-slate-800 rounded-lg p-6">
           <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
             <Brain size={20} />
-            Análise de Sensibilidade dos Parâmetros
+            {t('analysis.sensitivityAnalysis')}
           </h3>
           
           <ResponsiveContainer width="100%" height={350}>
@@ -465,20 +480,19 @@ const EpistemicDataAnalysis = () => {
                 contentStyle={{ backgroundColor: '#1F2937', border: 'none', borderRadius: '8px' }}
               />
               <Legend />
-              <Bar dataKey="accuracy" fill="#10B981" name="Acurácia (%)" />
-              <Bar dataKey="rmse" fill="#EF4444" name="RMSE (erro)" />
+              <Bar dataKey="accuracy" fill="#10B981" name={t('analysis.accuracyBar')} />
+              <Bar dataKey="rmse" fill="#EF4444" name={t('analysis.rmseBar')} />
             </BarChart>
           </ResponsiveContainer>
           
           <div className="mt-6 bg-slate-700 rounded-lg p-4">
-            <h4 className="text-white font-semibold mb-3">Insights sobre Parâmetros</h4>
+            <h4 className="text-white font-semibold mb-3">{t('analysis.paramInsights')}</h4>
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-3">
                 <AlertCircle className="text-blue-400 mt-0.5" size={16} />
                 <div>
                   <strong className="text-blue-400">Difusão (D):</strong>
-                  <span className="text-slate-300"> Valores altos (0.7-0.9) melhor para eventos virais. 
-                  Valores baixos (0.2-0.4) para conhecimento técnico especializado.</span>
+                  <span className="text-slate-300"> {t('analysis.diffusionHigh')}</span>
                 </div>
               </div>
               
@@ -486,8 +500,7 @@ const EpistemicDataAnalysis = () => {
                 <AlertCircle className="text-purple-400 mt-0.5" size={16} />
                 <div>
                   <strong className="text-purple-400">Criação (σ):</strong>
-                  <span className="text-slate-300"> Crucial para prever revoluções científicas. 
-                  Subestimar causa predições conservadoras.</span>
+                  <span className="text-slate-300"> {t('analysis.creationInsight')}</span>
                 </div>
               </div>
               
@@ -495,8 +508,7 @@ const EpistemicDataAnalysis = () => {
                 <AlertCircle className="text-orange-400 mt-0.5" size={16} />
                 <div>
                   <strong className="text-orange-400">Dissipação (μ):</strong>
-                  <span className="text-slate-300"> Afeta estabilidade de longo prazo. 
-                  Modas passageiras tem μ alto (~0.03-0.05).</span>
+                  <span className="text-slate-300"> {t('analysis.dissipationInsight')}</span>
                 </div>
               </div>
             </div>
@@ -506,25 +518,23 @@ const EpistemicDataAnalysis = () => {
       
       {/* Conclusões */}
       <div className="mt-6 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-6">
-        <h3 className="text-white font-bold mb-3 text-lg">🎯 Conclusões Preliminares</h3>
+        <h3 className="text-white font-bold mb-3 text-lg">{t('analysis.conclusions')}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div className="bg-black bg-opacity-20 rounded p-3">
-            <div className="text-green-400 font-semibold mb-2">✅ Modelo FUNCIONA para:</div>
+            <div className="text-green-400 font-semibold mb-2">{t('analysis.modelWorks')}</div>
             <ul className="text-slate-200 space-y-1 text-xs">
-              <li>• Eventos virais súbitos (COVID-19, memes)</li>
-              <li>• Adoção gradual de tecnologias (Deep Learning)</li>
-              <li>• Predição de pico de interesse</li>
-              <li>• Comparação entre diferentes ideias</li>
+              {modelWorksList.map((item: string, i: number) => (
+                <li key={i}>• {item}</li>
+              ))}
             </ul>
           </div>
           
           <div className="bg-black bg-opacity-20 rounded p-3">
-            <div className="text-orange-400 font-semibold mb-2">⚠️ Limitações Observadas:</div>
+            <div className="text-orange-400 font-semibold mb-2">{t('analysis.limitations')}</div>
             <ul className="text-slate-200 space-y-1 text-xs">
-              <li>• Não captura eventos externos (políticas, censura)</li>
-              <li>• Dificuldade com ciclos (Bitcoin hype cycles)</li>
-              <li>• Requer calibração por tipo de conhecimento</li>
-              <li>• Simplifica heterogeneidade geográfica</li>
+              {limitationsList.map((item: string, i: number) => (
+                <li key={i}>• {item}</li>
+              ))}
             </ul>
           </div>
         </div>

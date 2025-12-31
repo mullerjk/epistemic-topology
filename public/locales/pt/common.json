@@ -46,13 +46,6 @@
     "future": "Academia.edu",
     "futureText": "Publicação no arXiv e journals científicos"
   },
-  "simulation": {
-    "title": "Simulação Interativa",
-    "description": "Explore como ideias se propagam no espaço-tempo"
-  },
-  "analysis": {
-    "title": "Análise Empírica: Difusão de Conhecimento"
-  },
   "publications": {
     "title": "Publicações",
     "preprint": "📄 Preprint ",
@@ -77,5 +70,118 @@
       "linkedin": "LinkedIn",
       "github": "GitHub"
     }
+  },
+  "simulation": {
+    "title": "Simulação da Topologia do Conhecimento",
+    "description": "Explore interativamente como ideias e conhecimento se propagam no espaço-tempo, ajustando parâmetros de difusão, criação e dissipação.",
+    "equation": "Equação Mestra: ∂ρ/∂t = D·∇²ρ + σ(x,t) - μ·ρ",
+    "epistemicDensity": "Densidade Epistêmica ρ(x,y,t):",
+    "low": "Baixa",
+    "high": "Alta",
+    "totalKnowledge": "Conhecimento Total (Φ)",
+    "maxDensity": "Densidade Máxima",
+    "entropy": "Entropia (bits)",
+    "start": "Iniciar",
+    "pause": "Pausar",
+    "restart": "Reiniciar",
+    "info": "Info",
+    "hide": "Ocultar",
+    "time": "Tempo:",
+    "units": "unidades",
+    "paramsTitle": "Parâmetros da Equação",
+    "diffusion": "Difusão (D):",
+    "sharing": "Compartilhamento",
+    "creation": "Criação (σ):",
+    "innovation": "Inovação",
+    "dissipation": "Dissipação (μ):",
+    "forgetting": "Esquecimento",
+    "howToInterpret": "Como Interpretar",
+    "colorsDesc": "Representam densidade de conhecimento em cada região do espaço-tempo.",
+    "diffusionDesc": "Velocidade com que conhecimento se espalha espacialmente (compartilhamento, comunicação, ensino).",
+    "creationDesc": "Taxa de surgimento de conhecimento novo (pesquisa, inovação, descoberta).",
+    "dissipationDesc": "Taxa de perda de conhecimento (esquecimento, morte, degradação de registros).",
+    "totalDesc": "Integral de toda densidade epistêmica - \"quantidade total de conhecimento\" no sistema.",
+    "entropyDesc": "Medida de dispersão/uniformidade. Alta entropia = conhecimento distribuído uniformemente. Baixa = concentrado em poucos pontos.",
+    "experiments": "Experimentos:",
+    "exp1": "Aumente D para ver \"globalização do conhecimento\"",
+    "exp2": "Aumente σ para simular \"revolução científica\"",
+    "exp3": "Aumente μ para simular \"era das trevas\"",
+    "exp4": "Balance todos para ver equilíbrio dinâmico"
+  },
+  "analysis": {
+    "title": "Análise Empírica: Difusão de Conhecimento",
+    "subtitle": "Validação do modelo com dados reais de propagação de ideias",
+    "covid19": {
+      "name": "COVID-19 (2020)",
+      "description": "Propagação de conhecimento sobre a pandemia"
+    },
+    "deeplearning": {
+      "name": "Deep Learning (2012-2024)",
+      "description": "Adoção de técnicas de aprendizado profundo"
+    },
+    "bitcoin": {
+      "name": "Bitcoin (2009-2024)",
+      "description": "Conhecimento sobre criptomoedas"
+    },
+    "climatechange": {
+      "name": "Mudança Climática (1990-2024)",
+      "description": "Consciência sobre aquecimento global"
+    },
+    "correlation": "Correlação",
+    "pearson": "Pearson r",
+    "accuracy": "Acurácia",
+    "errorLess": "Erro < 15%",
+    "rmse": "RMSE",
+    "quadraticError": "Erro quadrático",
+    "diffusionRate": "Taxa Difusão",
+    "unitsPerPeriod": "Unidades/período",
+    "tabDiffusion": "Curva de Difusão",
+    "tabSources": "Fontes de Dados",
+    "tabSensitivity": "Sensibilidade",
+    "obsVsPred": "Observado vs. Predito pelo Modelo",
+    "realData": "Dados Reais",
+    "modelPredicted": "Modelo Previsto",
+    "interpretation": "Interpretação",
+    "blueLine": "Linha Azul (Dados Reais):",
+    "blueLineDesc": "Baseada em métricas observáveis (Google Trends, publicações científicas, menções em mídia).",
+    "greenLine": "Linha Verde (Modelo):",
+    "greenLineDesc": "Predição usando nossa equação ∂ρ/∂t = D·∇²ρ + σ - μ·ρ com parâmetros calibrados.",
+    "correlationExcellent": "Excelente ajuste - modelo captura dinâmica real",
+    "correlationGood": "Bom ajuste - tendências principais capturadas",
+    "correlationModerate": "Ajuste moderado - requer refinamento",
+    "multipleSources": "Múltiplas Fontes de Evidência",
+    "searches": "Buscas (Google Trends)",
+    "papers": "Papers Publicados",
+    "mentions": "Menções em Mídia",
+    "googleTrendsDesc": "Volume de buscas reflete interesse público direto. Proxy para ρ(popularidade).",
+    "papersDesc": "Publicações acadêmicas indicam profundidade epistêmica. Proxy para σ(criação).",
+    "mediaDesc": "Cobertura midiática amplifica difusão. Proxy para D(disseminação).",
+    "sensitivityAnalysis": "Análise de Sensibilidade dos Parâmetros",
+    "accuracyBar": "Acurácia (%)",
+    "rmseBar": "RMSE (erro)",
+    "paramInsights": "Insights sobre Parâmetros",
+    "diffusionHigh": "Valores altos (0.7-0.9) melhor para eventos virais. Valores baixos (0.2-0.4) para conhecimento técnico especializado.",
+    "creationInsight": "Crucial para prever revoluções científicas. Subestimar causa predições conservadoras.",
+    "dissipationInsight": "Afeta estabilidade de longo prazo. Modas passageiras tem μ alto (~0.03-0.05).",
+    "conclusions": "🎯 Conclusões Preliminares",
+    "modelWorks": "✅ Modelo FUNCIONA para:",
+    "modelWorksList": [
+      "Eventos virais súbitos (COVID-19, memes)",
+      "Adoção gradual de tecnologias (Deep Learning)",
+      "Predição de pico de interesse",
+      "Comparação entre diferentes ideias"
+    ],
+    "limitations": "⚠️ Limitações Observadas:",
+    "limitationsList": [
+      "Não captura eventos externos (políticas, censura)",
+      "Dificuldade com ciclos (Bitcoin hype cycles)",
+      "Requer calibração por tipo de conhecimento",
+      "Simplifica heterogeneidade geográfica"
+    ]
+  },
+  "collaboration": {
+    "title": "Colaboração",
+    "description": "Interessado em colaborar, validar com seus dados, ou aplicar este framework?",
+    "email": "contato@antoniomuller.com"
   }
 }
